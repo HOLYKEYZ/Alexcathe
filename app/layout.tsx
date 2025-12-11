@@ -14,7 +14,11 @@ export const metadata: Metadata = {
   title: "Alexcathe Services - Building Excellence",
   description: "Premium construction, electrical, MEP, and real estate development company.",
   icons: {
-    icon: '/logo.png', // Using logo as favicon as requested/fallback
+    icon: [
+      { url: '/alexcathe-logo.png', href: '/alexcathe-logo.png' },
+    ],
+    shortcut: '/alexcathe-logo.png',
+    apple: '/alexcathe-logo.png',
   }
 };
 

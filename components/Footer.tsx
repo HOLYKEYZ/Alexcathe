@@ -43,7 +43,7 @@ const Footer = () => {
         },
     ];
 
-    const logoSrc = mounted && resolvedTheme === 'dark' ? '/alexcathe-logo.png' : '/logo.png';
+    const logoSrc = '/logo.png';
 
     return (
         <footer className="bg-background-section-alt border-t border-border pt-20 pb-10 relative overflow-hidden transition-colors duration-300">
@@ -54,13 +54,16 @@ const Footer = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16 text-center md:text-left">
                     {/* Brand Column */}
                     <div className="space-y-6 flex flex-col items-center md:items-start">
-                        <Link href="/" className="inline-block group h-12 w-40 relative">
+                        <Link href="/" className="inline-block group h-20 w-72 relative">
                              {mounted ? (
                                  <Image 
                                     src={logoSrc} 
                                     alt="Alexcathe Logo" 
                                     fill
-                                    className="object-contain"
+                                    className={cn(
+                                        "object-contain transition-all duration-300",
+                                        resolvedTheme === "dark" ? "brightness-0 invert" : ""
+                                    )}
                                  />
                              ) : (
                                  <span className="font-heading font-bold text-3xl text-foreground tracking-tight">Alexcathe.</span>

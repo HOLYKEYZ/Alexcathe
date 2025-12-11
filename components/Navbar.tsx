@@ -34,18 +34,14 @@ const Navbar = () => {
     { name: "Contact", href: "/contact" },
   ];
 
-  const logoSrc = mounted && resolvedTheme === 'dark' ? '/alexcathe-logo.png' : '/logo.png';
-
-  // Removed "top-4" and max-w constraint to flush it if requested, but user said "remove gap".
-  // Usually this means top-0. Let's make it sticky top-0 full width or floating close.
-  // User: "how far the navbar is from the hero section, pls remove the gap"
-  // If I make it top-0 it sits on edge.
+  // Dynamic Logo Logic: Use logo.png always, but render as White in Dark Mode using CSS filters
+  const logoSrc = '/logo.png';
 
   return (
     <nav
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out", // Changed top-4 to top-0
-        scrolled ? "py-2" : "py-4", // Adjust padding on scroll
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out", 
+        scrolled ? "py-2" : "py-4", 
         "px-4 md:px-6"
       )}
     >
@@ -57,18 +53,27 @@ const Navbar = () => {
             : "bg-background/40 border-border/50"
         )}
       >
-        {/* Logo */}
-        <Link href="/" className="relative z-50 flex items-center gap-2 group h-10 w-32 relative">
+        {/* Logo - Maximized size as requested */}
+        <Link href="/" className="relative z-50 flex items-center gap-2 group h-14 w-52 relative">
              {mounted ? (
                  <Image 
                     src={logoSrc} 
                     alt="Alexcathe Logo" 
                     fill
-                    className="object-contain"
+                    className={cn(
+                        "object-contain transition-all duration-300",
+                        resolvedTheme === "dark" ? "brightness-0 invert" : ""
+                    )}
                     priority
                  />
              ) : (
-                 <span className="font-heading font-bold text-xl text-primary tracking-tight">Alexcathe.</span>
+                 <Image 
+                    src={logoSrc} 
+                    alt="Alexcathe Logo" 
+                    fill
+                    className="object-contain brightness-0 invert" // Default to dark/white on server
+                    priority
+                 />
              )}
         </Link>
 
