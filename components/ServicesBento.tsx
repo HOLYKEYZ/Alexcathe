@@ -43,7 +43,7 @@ export const ServicesBento = () => {
   }, []);
 
   return (
-    <section className="py-24 bg-background relative transition-colors duration-500">
+    <section className="py-24 bg-background relative transition-colors duration-500 border-t border-border">
        {/* Ambient Glow */}
        <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-orange-500/5 rounded-full blur-[128px] pointer-events-none" />
 

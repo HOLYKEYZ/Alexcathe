@@ -14,9 +14,8 @@ export default function Home() {
       {/* 1. Hero */}
       <HeroSection />
 
-      {/* 2. Trusted By */}
-      <LogoMarquee />
-
+      {/* 2. Trusted By - REMOVED as requested */}
+      
       {/* 3. Services (Bento Grid) */}
       <ServicesBento />
 
