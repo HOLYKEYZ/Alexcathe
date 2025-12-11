@@ -54,9 +54,9 @@ const Navbar = () => {
         )}
       >
         {/* Logo & Brand Name */}
-        <Link href="/" className="relative z-50 flex items-center gap-3 group">
+        <Link href="/" className="relative z-50 flex items-center gap-2 md:gap-3 group">
              {/* Logo Image */}
-             <div className="relative h-12 w-12 md:h-14 md:w-14 shrink-0">
+             <div className="relative h-10 w-10 md:h-14 md:w-14 shrink-0">
                  {mounted && (
                      <Image 
                         src={logoSrc} 
@@ -71,8 +71,8 @@ const Navbar = () => {
                  )}
              </div>
              
-             {/* Text - Visible now as requested */}
-             <span className="font-heading font-bold text-2xl md:text-3xl tracking-tight text-foreground hidden sm:block">
+             {/* Text - Visible on mobile now (sized down) */}
+             <span className="font-heading font-bold text-xl md:text-3xl tracking-tight text-foreground block">
                 Alexcathe<span className="text-orange-500">.</span>
              </span>
         </Link>
