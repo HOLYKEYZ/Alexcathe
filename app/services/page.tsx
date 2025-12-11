@@ -1,6 +1,8 @@
 import { PageHeader } from "@/components/PageHeader";
 import { GlassCard } from "@/components/ui/GlassCard";
-import { HardHat, Ruler, Building, Zap, Truck, Wrench } from "lucide-react";
+import { HardHat, Ruler, Building, Zap, Truck, Wrench, ArrowUpRight } from "lucide-react";
+import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 export default function ServicesPage() {
   const services = [
@@ -22,18 +24,31 @@ export default function ServicesPage() {
        <section className="py-24 container mx-auto px-6">
            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                {services.map((service, i) => (
-                   <GlassCard key={i} className="p-8 group hover:bg-secondary/20">
-                       <div className="flex justify-between items-start mb-6">
-                           <div className="w-14 h-14 rounded-2xl bg-secondary flex items-center justify-center text-muted-foreground group-hover:bg-orange-500 group-hover:text-white transition-all duration-500">
-                               <service.icon size={28} />
+                   <GlassCard 
+                      key={i} 
+                      className="p-8 group relative flex flex-col justify-between hover:bg-orange-500/5 transition-all duration-500"
+                    >
+                       <div>
+                           <div className="flex justify-between items-start mb-6">
+                               {/* Icon: Orange background/text, scales on hover (Match Home Page) */}
+                               <div className="w-14 h-14 rounded-2xl bg-orange-500/10 flex items-center justify-center text-orange-500 group-hover:scale-110 transition-transform duration-300">
+                                   <service.icon size={28} />
+                               </div>
+                               <span className="font-mono text-muted-foreground/50 text-xs">0{i+1}</span>
                            </div>
-                           <span className="font-mono text-muted-foreground text-xs">0{i+1}</span>
+                           
+                           <h3 className="text-2xl font-bold text-foreground mb-4 group-hover:text-orange-500 transition-colors">{service.title}</h3>
+                           <p className="text-muted-foreground leading-relaxed transition-colors">
+                               {service.desc}
+                           </p>
                        </div>
-                       
-                       <h3 className="text-2xl font-bold text-foreground mb-4 group-hover:text-orange-500 transition-colors">{service.title}</h3>
-                       <p className="text-muted-foreground leading-relaxed transition-colors">
-                           {service.desc}
-                       </p>
+
+                       {/* Arrow (Match Home Page) */}
+                       <div className="flex justify-end mt-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">
+                           <div className="w-8 h-8 rounded-full border border-orange-500 flex items-center justify-center text-orange-500">
+                               <ArrowUpRight size={16} />
+                           </div>
+                       </div>
                    </GlassCard>
                ))}
            </div>

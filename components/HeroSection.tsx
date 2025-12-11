@@ -54,7 +54,7 @@ export const HeroSection = () => {
             {/* Headline - "Styled More" as requested: Bigger, Tighter, Stronger Gradient */}
             <h1 className="font-heading text-6xl md:text-8xl lg:text-9xl font-extrabold text-foreground tracking-tighter leading-[0.9] mb-8 animate-fade-in-up delay-100 drop-shadow-2xl">
                 Engineering <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-orange-500 dark:from-white dark:via-slate-200 dark:to-slate-500">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-orange-500 dark:from-orange-400 dark:via-yellow-200 dark:to-orange-500 animate-gradient-x">
                     The Future.
                 </span>
             </h1>
