@@ -53,28 +53,28 @@ const Navbar = () => {
             : "bg-background/40 border-border/50"
         )}
       >
-        {/* Logo - Maximized size as requested */}
-        <Link href="/" className="relative z-50 flex items-center gap-2 group h-14 w-52 relative">
-             {mounted ? (
-                 <Image 
-                    src={logoSrc} 
-                    alt="Alexcathe Logo" 
-                    fill
-                    className={cn(
-                        "object-contain transition-all duration-300",
-                        resolvedTheme === "dark" ? "brightness-0 invert" : ""
-                    )}
-                    priority
-                 />
-             ) : (
-                 <Image 
-                    src={logoSrc} 
-                    alt="Alexcathe Logo" 
-                    fill
-                    className="object-contain brightness-0 invert" // Default to dark/white on server
-                    priority
-                 />
-             )}
+        {/* Logo & Brand Name */}
+        <Link href="/" className="relative z-50 flex items-center gap-3 group">
+             {/* Logo Image */}
+             <div className="relative h-12 w-12 md:h-14 md:w-14 shrink-0">
+                 {mounted && (
+                     <Image 
+                        src={logoSrc} 
+                        alt="Alexcathe Logo" 
+                        fill
+                        className={cn(
+                            "object-contain transition-all duration-300",
+                            resolvedTheme === "dark" ? "brightness-0 invert" : ""
+                        )}
+                        priority
+                     />
+                 )}
+             </div>
+             
+             {/* Text - Visible now as requested */}
+             <span className="font-heading font-bold text-2xl md:text-3xl tracking-tight text-foreground hidden sm:block">
+                Alexcathe<span className="text-orange-500">.</span>
+             </span>
         </Link>
 
         {/* Desktop Links */}

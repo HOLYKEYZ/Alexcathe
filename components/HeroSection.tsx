@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 export const HeroSection = () => {
   const { resolvedTheme } = useTheme();
@@ -40,19 +41,24 @@ export const HeroSection = () => {
 
       {/* Content */}
       <div className="container relative z-10 px-6 pt-20">
-         <div className="max-w-4xl mx-auto text-center flex flex-col items-center">
+         <div className="max-w-5xl mx-auto text-center flex flex-col items-center">
             
             {/* Status Badge */}
-            <div className="mb-8 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-background/50 border border-border backdrop-blur-md animate-fade-in-up">
+            <motion.div 
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="mb-8 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-background/50 border border-border backdrop-blur-md"
+            >
                 <span className="relative flex h-3 w-3">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
                 </span>
                 <span className="text-xs font-mono text-green-500 tracking-wider font-semibold uppercase">Status: 100% Operational</span>
-            </div>
+            </motion.div>
 
-            {/* Headline - Final Polish: "Engineering" = Standard, "The Future" = Gradient (Indigo/Purple Light, Gold/Orange Dark) */}
-            <h1 className="font-heading text-6xl md:text-8xl lg:text-9xl font-extrabold text-foreground tracking-tighter leading-[0.9] mb-8 animate-fade-in-up delay-100 drop-shadow-2xl">
+            {/* Headline - Polished Typography: Responsive sizes, text-balance for wrapping */}
+            <h1 className="font-heading text-5xl md:text-7xl lg:text-9xl font-extrabold text-foreground tracking-tighter leading-[0.9] mb-8 animate-fade-in-up delay-100 drop-shadow-2xl text-balance">
                 Engineering <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-orange-500 dark:from-orange-400 dark:via-amber-200 dark:to-orange-600 animate-gradient-x">
                     The Future.
@@ -60,7 +66,7 @@ export const HeroSection = () => {
             </h1>
 
             {/* Subtext */}
-            <p className="text-lg md:text-2xl text-muted-foreground max-w-2xl mb-10 leading-relaxed animate-fade-in-up delay-200 font-light">
+            <p className="text-lg md:text-2xl text-muted-foreground max-w-2xl mb-10 leading-relaxed animate-fade-in-up delay-200 font-light text-balance">
                 Premium construction, structural integrity, and architectural excellence. 
                 We bring <span className="text-foreground font-semibold">industrial precision</span> to every project in Nigeria.
             </p>
@@ -68,13 +74,13 @@ export const HeroSection = () => {
             {/* Actions */}
             <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto animate-fade-in-up delay-300">
                 <Link href="/contact" className="w-full sm:w-auto">
-                    <GradientButton className="w-full sm:w-auto h-16 px-10 text-xl font-bold rounded-full shadow-orange-500/20 shadow-2xl hover:scale-105 transition-transform duration-300">
+                    <GradientButton className="w-full sm:w-auto h-16 px-10 text-xl font-bold rounded-full shadow-orange-500/20 shadow-2xl active:scale-95 transition-transform duration-200">
                         Start Your Project
                         <ArrowRight size={24} />
                     </GradientButton>
                 </Link>
                 <Link href="/projects" className="w-full sm:w-auto">
-                    <button className="w-full sm:w-auto h-16 px-10 rounded-full border border-border bg-background/5 text-foreground font-semibold hover:bg-foreground/5 hover:border-foreground/20 transition-all flex items-center justify-center gap-2 backdrop-blur-md hover:scale-105 duration-300">
+                    <button className="w-full sm:w-auto h-16 px-10 rounded-full border border-border bg-background/5 text-foreground font-semibold hover:bg-foreground/5 hover:border-foreground/20 active:scale-95 transition-all flex items-center justify-center gap-2 backdrop-blur-md duration-200">
                         View Portfolio
                     </button>
                 </Link>

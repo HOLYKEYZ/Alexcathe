@@ -11,12 +11,21 @@ export const GlassCard = ({ children, className, hoverEffect = true }: GlassCard
   return (
     <div
       className={cn(
-        "bg-slate-900/40 backdrop-blur-md border border-white/5 rounded-2xl overflow-hidden transition-all duration-300",
-        hoverEffect && "hover:bg-slate-800/60 hover:-translate-y-1 hover:border-orange-500/30 hover:shadow-[0_0_30px_-10px_rgba(249,115,22,0.15)]",
+        "relative backdrop-blur-xl border transition-all duration-300",
+        "bg-background/40 border-white/10 dark:hover:border-white/20", // Dark Mode: Glass & Subtle Border
+        // Light Mode: Clean background with subtle shadow for depth, rather than just border
+        "light:bg-white/80 light:border-slate-200 light:shadow-lg light:shadow-slate-200/50 light:hover:shadow-xl",
+        hoverEffect && "hover:-translate-y-1 hover:shadow-2xl hover:shadow-orange-500/10",
+        "rounded-3xl overflow-hidden", // Increased corner radius for "Sleek" look
         className
       )}
     >
-      {children}
+      {/* Glossy sheen overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+      
+      <div className="relative z-10 h-full">
+        {children} 
+      </div>
     </div>
   );
 };
