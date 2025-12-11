@@ -50,19 +50,21 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Custom Aliases
-        'background-card': 'hsl(var(--background-card))',
-        'background-section-alt': 'hsl(var(--background-section-alt))',
-        'text-primary': 'hsl(var(--text-primary))',
-        'text-secondary': 'hsl(var(--text-secondary))',
-      },
-      backgroundImage: {
-        'gradient-primary': 'var(--gradient-primary)',
-        'gradient-cta': 'var(--gradient-cta)',
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        // Kelegam Design Tokens
+        'navy': {
+           950: '#0B1120', // Base Background
+           900: '#0F172A',
+           800: '#1E293B', // Surface
+        },
+        'orange': {
+           500: '#F97316', // Primary Glow
+           600: '#EA580C',
+        },
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        sans: ['var(--font-inter)', 'sans-serif'],
+        heading: ['var(--font-manrope)', 'sans-serif'],
+        mono: ['var(--font-jetbrains)', 'monospace'],
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -78,10 +80,30 @@ const config: Config = {
           from: { height: 'var(--radix-accordion-content-height)' },
           to: { height: '0' },
         },
+        float: {
+            '0%, 100%': { transform: 'translateY(0)' },
+            '50%': { transform: 'translateY(-10px)' },
+        },
+        shimmer: {
+            '0%': { backgroundPosition: '-1000px 0' },
+            '100%': { backgroundPosition: '1000px 0' },
+        },
+        'fade-in-up': {
+            '0%': { opacity: '0', transform: 'translateY(20px)' },
+            '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        'fade-in': {
+            '0%': { opacity: '0' },
+            '100%': { opacity: '1' },
+        }
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        'float': 'float 6s ease-in-out infinite',
+        'shimmer': 'shimmer 2s linear infinite',
+        'fade-in-up': 'fade-in-up 0.8s ease-out forwards',
+        'fade-in': 'fade-in 0.5s ease-out forwards',
       },
     },
   },

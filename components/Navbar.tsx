@@ -3,26 +3,18 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { ThemeToggle } from "@/components/ThemeToggle";
+import { GradientButton } from "@/components/ui/GradientButton";
+import { ThemeToggle } from "./ThemeToggle";
 import { useTheme } from "next-themes";
+import Image from "next/image";
 
-const navLinks = [
-  { name: "Home", href: "/" },
-  { name: "About", href: "/about" },
-  { name: "Services", href: "/services" },
-  { name: "Projects", href: "/projects" },
-  { name: "Contact", href: "/contact" },
-];
-
-export default function Navbar() {
+const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
-  const { theme, resolvedTheme } = useTheme();
+  const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -34,122 +26,119 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Prevent hydration mismatch
-  const currentTheme = mounted ? (theme === 'system' ? resolvedTheme : theme) : 'dark';
-  const logoSrc = currentTheme === 'light' ? "/logo.png" : "/alexcathe-logo.png";
+  const navLinks = [
+    { name: "Home", href: "/" },
+    { name: "About", href: "/about" },
+    { name: "Services", href: "/services" },
+    { name: "Projects", href: "/projects" },
+    { name: "Contact", href: "/contact" },
+  ];
+
+  const logoSrc = mounted && resolvedTheme === 'dark' ? '/alexcathe-logo.png' : '/logo.png';
+
+  // Removed "top-4" and max-w constraint to flush it if requested, but user said "remove gap".
+  // Usually this means top-0. Let's make it sticky top-0 full width or floating close.
+  // User: "how far the navbar is from the hero section, pls remove the gap"
+  // If I make it top-0 it sits on edge.
 
   return (
     <nav
       className={cn(
-        "fixed top-0 w-full z-50 transition-all duration-300 border-b border-transparent",
-        scrolled || isOpen
-          ? "bg-background/80 backdrop-blur-md border-border py-4"
-          : "bg-transparent py-6"
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out", // Changed top-4 to top-0
+        scrolled ? "py-2" : "py-4", // Adjust padding on scroll
+        "px-4 md:px-6"
       )}
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-8 flex items-center justify-between">
+      <div 
+        className={cn(
+          "mx-auto max-w-7xl rounded-full border transition-all duration-500 backdrop-blur-xl px-6 py-3 flex items-center justify-between",
+          scrolled 
+            ? "bg-background/80 border-border shadow-2xl" 
+            : "bg-background/40 border-border/50"
+        )}
+      >
         {/* Logo */}
-        <Link href="/" className="group flex items-center gap-2">
-           {mounted && (
-             <img 
-               src={logoSrc} 
-               alt="Alexcathe Logo" 
-               className="w-10 h-10 object-contain transition-all duration-300" 
-             />
-           )}
-          <span className="text-xl font-bold tracking-tight text-foreground group-hover:text-primary transition-colors">
-            ALEXCATHE
-          </span>
+        <Link href="/" className="relative z-50 flex items-center gap-2 group h-10 w-32 relative">
+             {mounted ? (
+                 <Image 
+                    src={logoSrc} 
+                    alt="Alexcathe Logo" 
+                    fill
+                    className="object-contain"
+                    priority
+                 />
+             ) : (
+                 <span className="font-heading font-bold text-xl text-primary tracking-tight">Alexcathe.</span>
+             )}
         </Link>
 
-        {/* Desktop Nav */}
+        {/* Desktop Links */}
         <div className="hidden md:flex items-center gap-8">
-          <div className="flex items-center gap-6">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className={cn(
-                  "text-sm font-medium transition-colors hover:text-primary relative",
-                  pathname === link.href
-                    ? "text-primary"
-                    : "text-text-secondary"
-                )}
-              >
-                {link.name}
-                {pathname === link.href && (
-                  <motion.div
-                    layoutId="navbar-indicator"
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full"
-                  />
-                )}
-              </Link>
-            ))}
-          </div>
-          
-          <div className="flex items-center gap-4">
-            <ThemeToggle />
-            <Button className="bg-gradient-cta text-white border-0 hover:scale-105 transition-transform shadow-lg shadow-primary/20" asChild>
-              <Link href="/contact">Get a Quote</Link>
-            </Button>
-          </div>
+          {navLinks.map((link) => (
+            <Link
+              key={link.name}
+              href={link.href}
+              className={cn(
+                "text-sm font-medium transition-colors hover:text-orange-500 relative group",
+                pathname === link.href ? "text-foreground font-bold" : "text-muted-foreground"
+              )}
+            >
+              {link.name}
+              <span className={cn(
+                "absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 transition-all duration-300 group-hover:w-full",
+                pathname === link.href ? "w-full" : ""
+              )} />
+            </Link>
+          ))}
         </div>
 
-        {/* Mobile Menu Toggle */}
-        <button
-          className="md:hidden text-white"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          {isOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
+        {/* Right Actions */}
+        <div className="hidden md:flex items-center gap-4">
+          <ThemeToggle />
+          <Link href="/contact">
+            <GradientButton className="px-5 py-2 text-sm h-10">
+                Get a Quote
+            </GradientButton>
+          </Link>
+        </div>
+
+        {/* Mobile Toggle */}
+        <div className="flex items-center gap-4 md:hidden">
+            <ThemeToggle />
+            <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="text-foreground p-2 hover:bg-foreground/10 rounded-full transition-colors"
+            >
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+        </div>
       </div>
 
       {/* Mobile Menu Overlay */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "100vh" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="fixed inset-0 top-[70px] bg-background z-40 md:hidden overflow-hidden"
-          >
-            <div className="flex flex-col items-center justify-center h-full gap-8 p-6 pb-32">
-              {navLinks.map((link, i) => (
-                <motion.div
-                  key={link.href}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ 
-                    opacity: 1, 
-                    y: 0,
-                    transition: { delay: i * 0.1 }
-                  }}
-                >
-                  <Link
-                    href={link.href}
-                    className={cn(
-                      "text-3xl font-bold",
-                      pathname === link.href ? "text-primary" : "text-white"
-                    )}
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {link.name}
-                  </Link>
-                </motion.div>
-              ))}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0, transition: { delay: 0.4 } }}
-              >
-                <Button variant="gradient" size="xl" className="w-full" asChild>
-                   <Link href="/contact" onClick={() => setIsOpen(false)}>
-                     Request Quote
-                   </Link>
-                </Button>
-              </motion.div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {isOpen && (
+        <div className="absolute top-full left-0 right-0 mt-2 mx-4 p-4 rounded-3xl bg-background/95 border border-border backdrop-blur-xl shadow-2xl flex flex-col gap-4 md:hidden animate-in slide-in-from-top-4 fade-in duration-200">
+          {navLinks.map((link) => (
+            <Link
+              key={link.name}
+              href={link.href}
+              onClick={() => setIsOpen(false)}
+              className={cn(
+                "text-lg font-medium p-4 rounded-xl transition-colors hover:bg-foreground/5",
+                pathname === link.href ? "text-orange-500 bg-orange-500/10" : "text-muted-foreground"
+              )}
+            >
+              {link.name}
+            </Link>
+          ))}
+           <Link href="/contact" onClick={() => setIsOpen(false)}>
+            <GradientButton className="w-full justify-center">
+                Get Started
+            </GradientButton>
+          </Link>
+        </div>
+      )}
     </nav>
   );
-}
+};
+
+export default Navbar;

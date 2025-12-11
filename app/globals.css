@@ -5,91 +5,71 @@
 @layer base {
   :root {
     /* 
-      LIGHT MODE (Visibility Focused) 
-      Clean white/gray background with strong contrasts.
+      LIGHT MODE 
+      High Contrast, Professional Construction Look
     */
-    --background: 210 40% 98%;      /* Very light cool gray */
-    --foreground: 222 47% 11%;      /* Deep navy (almost black) text */
+    --background: 210 40% 98%;      /* Slate 50 */
+    --foreground: 222 47% 11%;      /* Slate 900 */
 
-    --card: 0 0% 100%;              /* White cards */
+    --card: 0 0% 100%;
     --card-foreground: 222 47% 11%;
  
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
  
-    --primary: 221 83% 53%;         /* Vivid Blue */
+    --primary: 24 95% 53%;          /* Orange (Safety) - Kelegam Glow */
     --primary-foreground: 210 40% 98%;
  
-    --secondary: 199 89% 48%;       /* Cyan/Teal accent */
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 48 96% 53%;        /* Yellow (Caution) */
+    --secondary-foreground: 222 47% 11%;
  
     --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted-foreground: 215 16% 47%;
  
     --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent-foreground: 222 47% 11%;
  
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 221 83% 53%;
-    --radius: 0.75rem;
-
-    /* Custom Alexcathe Vars - Light */
-    --background-section-alt: 210 40% 96%; /* Slightly darker for alternation */
-    --background-card: 0 0% 100%;
-    --text-primary: 222 47% 11%;
-    --text-secondary: 215 16% 47%;
-    
-    /* Light Mode Gradients */
-    --gradient-primary: linear-gradient(135deg, #2563EB 0%, #0EA5E9 100%);
-    --gradient-cta: linear-gradient(135deg, #0EA5E9 0%, #3B82F6 100%);
+    --ring: 24 95% 53%;             /* Orange Ring */
+    --radius: 1rem;                 /* 16px radius */
   }
  
   .dark {
     /* 
-      DARK MODE (Premium Kelegam Style)
-      Deep, rich navy/black background (#0A0D1F) 
+      DARK MODE (The Kelegam Standard)
+      Deep Navy Base, Orange Accents, Glass Surfaces
     */
-    --background: 230 50% 8%;       /* #0A0D1F - Deep Navy Black */
-    --foreground: 210 40% 98%;
+    --background: 222 47% 8%;       /* #0B1120 (Navy 950) */
+    --foreground: 210 40% 98%;      /* Slate 50 */
 
-    --card: 229 50% 12%;            /* Slightly lighter navy for cards */
+    --card: 217 33% 17%;            /* Slate 800 */
     --card-foreground: 210 40% 98%;
  
-    --popover: 229 50% 12%;
+    --popover: 217 33% 17%;
     --popover-foreground: 210 40% 98%;
  
-    --primary: 217 91% 60%;         /* Lighter blue for dark mode contrast */
-    --primary-foreground: 222 47.4% 11.2%;
+    --primary: 24 95% 53%;          /* #F97316 (Orange 500) */
+    --primary-foreground: 210 40% 98%;
  
-    --secondary: 199 89% 48%;       /* Teal/Cyan remains */
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 48 96% 53%;        /* #FACC15 (Yellow 400) */
+    --secondary-foreground: 222 47% 11%;
  
-    --muted: 223 47% 11%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
  
-    --accent: 216 34% 17%;
+    --accent: 217 33% 17%;
     --accent-foreground: 210 40% 98%;
  
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
  
-    --border: 216 34% 17%;
-    --input: 216 34% 17%;
-    --ring: 224 76% 48%;
-
-    /* Custom Alexcathe Vars - Dark */
-    --background-section-alt: 231 45% 10%; /* Alternating section color */
-    --background-card: 229 50% 12%;
-    --text-primary: 210 40% 98%;
-    --text-secondary: 215 20% 65%;
-
-    /* Dark Mode Gradients */
-    --gradient-primary: linear-gradient(135deg, #3B82F6 0%, #06B6D4 100%);
-    --gradient-cta: linear-gradient(135deg, #06B6D4 0%, #3B82F6 100%);
+    --border: 215 25% 27%;          /* Subtler border for dark mode */
+    --input: 217 33% 17%;
+    --ring: 24 95% 53%;
   }
 }
  
@@ -101,11 +81,20 @@
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
     font-feature-settings: "rlig" 1, "calt" 1;
+    @apply selection:bg-orange-500/30 selection:text-orange-500;
   }
 }
 
 @layer utilities {
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-primary;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-200 to-slate-400;
+  }
+  
+  .glass {
+    @apply bg-slate-900/60 backdrop-blur-md border border-white/10;
+  }
+  
+  .glass-card {
+    @apply bg-slate-800/50 backdrop-blur-xl border border-white/10 shadow-xl transition-all duration-300;
   }
 }

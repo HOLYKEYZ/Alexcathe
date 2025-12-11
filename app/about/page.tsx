@@ -1,131 +1,79 @@
-"use client";
-
+import { PageHeader } from "@/components/PageHeader";
+import { GlassCard } from "@/components/ui/GlassCard";
+import { CheckCircle2, Shield, Users, Target } from "lucide-react";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { Shield, Target, Lightbulb, CheckCircle } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
-import { fadeUp, staggerContainer } from "@/lib/animations";
 
 export default function AboutPage() {
+  const values = [
+      { icon: Shield, title: "Integrity", desc: "Uncompromising honesty and transparency in every transaction." },
+      { icon: Target, title: "Precision", desc: "Attention to detail that exceeds standard industry benchmarks." },
+      { icon: Users, title: "Client-Centric", desc: "Your vision is our blueprint. We build for your success." },
+  ];
+
   return (
-    <div className="flex flex-col w-full overflow-hidden">
-      
-      {/* PAGE HERO */}
-      <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-background-section-alt">
-          {/* Placeholder for About Hero Image */}
-           <div className="absolute inset-0 bg-gradient-to-r from-blue-900/20 to-purple-900/20" />
-           <div className="absolute inset-0 flex items-center justify-center text-white/5 font-bold text-8xl uppercase tracking-widest -rotate-12">
-             About Us
-           </div>
-        </div>
-        <div className="absolute inset-0 bg-black/60 z-10" />
-        
-        <div className="container relative z-20 px-6 text-center max-w-4xl mx-auto">
-          <motion.span 
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-primary font-medium tracking-wider uppercase mb-4 block"
-          >
-            About Alexcathe
-          </motion.span>
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-4xl md:text-6xl font-bold text-white mb-6"
-          >
-            Building Kwara's Future,<br/>One Project at a Time
-          </motion.h1>
-        </div>
-      </section>
+    <main className="bg-background min-h-screen transition-colors duration-500">
+       <PageHeader 
+          title="Building With Purpose." 
+          subtitle="Alexcathe Services is Nigeria's premier construction and real estate development firm, dedicated to engineering excellence."
+       />
 
-      {/* COMPANY OVERVIEW */}
-      <section className="py-20 md:py-32 bg-background">
-        <div className="container px-6 max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeUp}
-            >
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">Who We Are</h2>
-              <div className="space-y-6 text-text-secondary text-lg leading-relaxed">
-                <p>
-                  Alexcathe Services Nig Ltd is a premier construction and engineering firm based in Ilorin, Kwara State. With over 10 years of offering satisfactory results to clients, we have established ourselves as a trusted partner in the industry.
-                </p>
-                <p>
-                  We specialize in delivering high-quality residential and commercial projects that stand the test of time. With RC numbers 1002813 and 101, we are a fully registered and licensed entity, committed to professional excellence and regulatory compliance in every brick we lay and every system we install.
-                </p>
-                <div className="flex flex-col gap-4 mt-8 p-6 bg-background-card rounded-xl border border-border">
-                  <div className="flex items-center gap-3">
-                    <Shield className="text-primary" />
-                    <span className="text-white font-semibold">Fully Licensed & Insured</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <CheckCircle className="text-primary" />
-                    <span className="text-white font-semibold">RC: 1002813 | RC: 101</span>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="relative aspect-square md:aspect-video lg:aspect-square bg-background-card rounded-2xl overflow-hidden border border-border"
-            >
-               {/* Founder Image */}
-               <Image 
-                 src="/17.jpg" 
-                 alt="Founder of Alexcathe Services" 
-                 fill
-                 className="object-cover" 
-               />
-               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent" />
-               <div className="absolute bottom-6 left-6 right-6">
-                 <h3 className="text-2xl font-bold text-white mb-1">Our Founder</h3>
-                 <p className="text-primary font-medium mb-3">Civil & Electrical Expert</p>
-                 <p className="text-sm text-gray-300">
-                   With 15+ years of hands-on experience, our founder leads with expertise in structural integrity and complex electrical systems, ensuring every project meets global standards.
-                 </p>
+       {/* Founder Section */}
+       <section className="py-24 container mx-auto px-6">
+           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+               <div className="relative group">
+                    <div className="absolute inset-0 bg-orange-500 rounded-3xl rotate-6 opacity-20 blur-xl transition-all group-hover:rotate-0 group-hover:opacity-30" />
+                    <GlassCard className="relative overflow-hidden aspect-[4/5] p-0 border-border">
+                         <div className="w-full h-full bg-slate-800 flex items-center justify-center text-slate-600">
+                             <Image 
+                                src="/17.jpg" 
+                                alt="Engr. Gabriel" 
+                                width={600} 
+                                height={800} 
+                                className="w-full h-full object-cover"
+                             />
+                         </div>
+                    </GlassCard>
                </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+               
+               <div>
+                   <h2 className="font-heading text-4xl text-foreground font-bold mb-6">A Legacy of <span className="text-orange-500">Excellence</span></h2>
+                   <div className="space-y-6 text-muted-foreground leading-relaxed font-light text-lg">
+                       <p>
+                           "At Alexcathe, we don't just build structures; we create environments that inspire. Our journey began with a simple mission: to raise the standard of construction in Nigeria through rigorous engineering and transparent practices."
+                       </p>
+                       <p>
+                           With over a decade of experience, we have successfully delivered landmark projects across Kwara State and beyond, earning the trust of both private individuals and government bodies.
+                       </p>
+                   </div>
+                   
+                   <div className="mt-10 pt-10 border-t border-border">
+                       <p className="text-foreground font-heading font-bold text-xl">Engr. Gabriel</p>
+                       <p className="text-orange-500 font-mono text-sm uppercase tracking-widest mt-1">Chief Executive Officer</p>
+                   </div>
+               </div>
+           </div>
+       </section>
 
-      {/* CORE VALUES */}
-      <section className="py-20 md:py-32 bg-background-section-alt">
-        <div className="container px-6 max-w-7xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-16">Our Core Values</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              { 
-                title: "Creating Lasting Value", 
-                desc: "We focus on high-quality construction and transparent processes to create lasting value for homeowners and investors, ensuring long-term community impact." 
-              },
-              { 
-                title: "Shaping Thriving Communities", 
-                desc: "Our goal is to delivery safe, sustainable, and beautifully crafted homes that exceed our clients’ expectations and enhance the neighborhoods we build in." 
-              },
-              { 
-                title: "Efficient Innovation", 
-                desc: "We prioritize efficient time management and the introduction of new innovations to ensure optimal output and timely delivery of every project at hand." 
-              }
-            ].map((val, i) => (
-              <div key={i} className="p-8 rounded-2xl bg-background-card border border-border hover:border-primary/50 transition-colors">
-                <h3 className="text-xl font-bold text-white mb-3">{val.title}</h3>
-                <p className="text-text-secondary leading-relaxed">{val.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-    </div>
+       {/* Values Grid */}
+       <section className="py-24 bg-background-section-alt border-t border-border">
+           <div className="container mx-auto px-6">
+               <div className="text-center mb-16">
+                   <h2 className="font-heading text-3xl font-bold text-foreground">Our Core Values</h2>
+               </div>
+               
+               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                   {values.map((val, i) => (
+                       <GlassCard key={i} className="p-8 text-center bg-background border-border hover:bg-background/80">
+                           <div className="w-16 h-16 mx-auto rounded-full bg-orange-500/10 flex items-center justify-center text-orange-500 mb-6">
+                               <val.icon size={32} />
+                           </div>
+                           <h3 className="text-xl font-bold text-foreground mb-4">{val.title}</h3>
+                           <p className="text-muted-foreground">{val.desc}</p>
+                       </GlassCard>
+                   ))}
+               </div>
+           </div>
+       </section>
+    </main>
   );
 }

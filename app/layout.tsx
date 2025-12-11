@@ -1,18 +1,22 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Manrope, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { cn } from "@/lib/utils";
+import { ThemeProvider } from "@/components/theme-provider"
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope" });
+const jetbrains = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains" });
 
 export const metadata: Metadata = {
-  title: "Alexcathe Services - Building Excellence in Kwara State",
-  description: "Premium construction, electrical, MEP, and real estate development company in Ilorin, Kwara State, Nigeria. RC: 1002813.",
+  title: "Alexcathe Services - Building Excellence",
+  description: "Premium construction, electrical, MEP, and real estate development company.",
+  icons: {
+    icon: '/logo.png', // Using logo as favicon as requested/fallback
+  }
 };
-
-import { ThemeProvider } from "@/components/theme-provider"
 
 export default function RootLayout({
   children,
@@ -21,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} bg-background text-foreground antialiased`}>
+      <body className={`${inter.variable} ${manrope.variable} ${jetbrains.variable} font-sans bg-background text-foreground antialiased selection:bg-orange-500/30`}>
         <ThemeProvider
             attribute="class"
             defaultTheme="dark"

@@ -1,113 +1,85 @@
 "use client";
 
 import { useState } from "react";
+import { PageHeader } from "@/components/PageHeader";
+import { GlassCard } from "@/components/ui/GlassCard";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
-import { X, ZoomIn } from "lucide-react";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { fadeUp, staggerContainer } from "@/lib/animations";
+import { cn } from "@/lib/utils";
+import { AnimatePresence, motion } from "framer-motion";
 
-// Total images 1-18, excluding 17 (founder)
-const projectImages = Array.from({ length: 18 }, (_, i) => i + 1).filter(i => i !== 17);
+const categories = ["All", "Commercial", "Residential", "Industrial", "Public"];
+
+// Updated projects based on user feedback
+const projects = [
+  { id: 1, title: "Estate", category: "Commercial", image: "/1.jpg" }, // Was Lagos High-Rise
+  { id: 2, title: "Modern Duplex", category: "Residential", image: "/2.jpg" },
+  { id: 3, title: "Estate", category: "Industrial", image: "/3.jpg" }, // Was Shopping Complex
+  { id: 4, title: "Mosque", category: "Public", image: "/4.jpg" }, // Was Government Facility
+  { id: 5, title: "Graphics Card Flier", category: "Residential", image: "/flier1.jpg" }, // Was Urban Estate
+  { id: 6, title: "Electronic Services", category: "Commercial", image: "/electrical-works.png" }, // Was Tech Hub (missing image)
+];
 
 export default function ProjectsPage() {
-  const [selectedImage, setSelectedImage] = useState<number | null>(null);
+  const [filter, setFilter] = useState("All");
+
+  const filteredProjects = projects.filter(p => filter === "All" || p.category === filter);
 
   return (
-    <div className="flex flex-col w-full overflow-hidden">
-      
-      {/* PAGE HERO */}
-      <section className="relative h-[40vh] min-h-[300px] flex items-center justify-center overflow-hidden bg-background-section-alt">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background" />
-        {/* Abstract Background */}
-        <div className="absolute inset-0 opacity-20 bg-[url('/hero-bg-cool.png')] bg-cover bg-center" />
-        
-        <div className="container relative z-20 px-6 text-center">
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-6xl font-bold text-white mb-6"
-          >
-            Our Projects
-          </motion.h1>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-text-secondary max-w-2xl mx-auto text-lg"
-          >
-            A showcase of our excellence in construction, engineering, and design across Kwara State.
-          </motion.p>
-        </div>
-      </section>
+    <main className="bg-background min-h-screen transition-colors duration-500">
+       <PageHeader 
+          title="Our Portfolio." 
+          subtitle="A showcase of engineering precision and architectural innovation across Nigeria."
+       />
 
-      {/* GALLERY */}
-      <section className="py-20 bg-background">
-        <div className="container px-6 max-w-7xl mx-auto">
-          <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-            className="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8"
-          >
-            {projectImages.map((num) => (
-              <motion.div key={num} variants={fadeUp} className="break-inside-avoid">
-                <div 
-                  className="group relative rounded-2xl overflow-hidden bg-background-card border border-border cursor-pointer"
-                  onClick={() => setSelectedImage(num)}
-                >
-                  <div className="relative w-full">
-                     <img 
-                       src={`/${num}.jpg`} 
-                       alt={`Project ${num}`}
-                       className="w-full h-auto transform transition-transform duration-500 group-hover:scale-105"
-                       loading="lazy"
-                     />
-                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
-                       <ZoomIn className="text-white drop-shadow-lg" size={32} />
-                     </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
+       <section className="py-12 container mx-auto px-6">
+           {/* Filters */}
+           <div className="flex flex-wrap gap-4 justify-center mb-12">
+               {categories.map((cat) => (
+                   <button
+                       key={cat}
+                       onClick={() => setFilter(cat)}
+                       className={cn(
+                           "px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 border",
+                           filter === cat 
+                             ? "bg-orange-500 text-white border-orange-500 shadow-lg shadow-orange-500/20" 
+                             : "bg-background/50 text-muted-foreground border-border hover:border-orange-500/50 hover:text-orange-500"
+                       )}
+                   >
+                       {cat}
+                   </button>
+               ))}
+           </div>
 
-      {/* LIGHTBOX */}
-      <AnimatePresence>
-        {selectedImage && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[60] bg-black/90 backdrop-blur-md flex items-center justify-center p-4"
-            onClick={() => setSelectedImage(null)}
-          >
-            <button 
-              className="absolute top-4 right-4 text-white/50 hover:text-white p-2"
-              onClick={() => setSelectedImage(null)}
-            >
-              <X size={40} />
-            </button>
-            <motion.div
-              initial={{ scale: 0.9 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.9 }}
-              className="relative max-w-7xl max-h-[90vh] w-full h-full flex items-center justify-center"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <img 
-                src={`/${selectedImage}.jpg`} 
-                alt={`Project ${selectedImage}`}
-                className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
-              />
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-    </div>
+           {/* Grid */}
+           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+               <AnimatePresence>
+                   {filteredProjects.map((project) => (
+                       <motion.div 
+                          layout
+                          initial={{ opacity: 0, scale: 0.9 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          exit={{ opacity: 0, scale: 0.9 }}
+                          transition={{ duration: 0.3 }}
+                          key={project.id} 
+                          className="relative group rounded-3xl overflow-hidden cursor-pointer h-[400px]"
+                       >
+                           <div className="relative w-full h-full">
+                                <Image 
+                                   src={project.image} 
+                                   alt={project.title}
+                                   fill
+                                   className="object-cover group-hover:scale-105 transition-transform duration-700"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                                     <span className="text-orange-400 font-mono text-xs uppercase tracking-widest mb-1">{project.category}</span>
+                                     <h3 className="text-xl font-bold text-white">{project.title}</h3>
+                                </div>
+                           </div>
+                       </motion.div>
+                   ))}
+               </AnimatePresence>
+           </div>
+       </section>
+    </main>
   );
 }
