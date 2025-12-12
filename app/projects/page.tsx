@@ -7,7 +7,7 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 
-const categories = ["All", "Commercial", "Residential", "Industrial", "Public"];
+const categories = ["All", "Commercial", "Residential", "Industrial", "Public", "3D Designs"];
 
 // Updated projects based on user feedback
 const projects = [
@@ -16,7 +16,20 @@ const projects = [
   { id: 3, title: "Estate", category: "Industrial", image: "/3.jpg" }, // Was Shopping Complex
   { id: 4, title: "Mosque", category: "Public", image: "/4.jpg" }, // Was Government Facility
   { id: 5, title: "Graphics Card Flier", category: "Residential", image: "/flier1.jpg" }, // Was Urban Estate
-  { id: 6, title: "Electronic Services", category: "Commercial", image: "/electrical-works.png" }, // Was Tech Hub (missing image)
+  { id: 6, title: "Electronic Services", category: "Commercial", image: "/electrical-works.png" }, // Was Tech Hub
+  // Added Remaining Images 5-16 with specific updates
+  { id: 7, title: "Real Estate", category: "Commercial", image: "/5.jpg" },
+  { id: 8, title: "Architectural Drawing", category: "3D Designs", image: "/6.jpg" },
+  { id: 9, title: "Architectural Drawing", category: "3D Designs", image: "/7.jpg" },
+  { id: 10, title: "Architectural Drawing", category: "3D Designs", image: "/8.jpg" },
+  { id: 11, title: "Architectural Drawing", category: "3D Designs", image: "/9.jpg" },
+  { id: 12, title: "Architectural Drawing", category: "3D Designs", image: "/10.jpg" },
+  { id: 13, title: "Ongoing Project", category: "Residential", image: "/11.jpg" },
+  { id: 14, title: "Ongoing Project", category: "Commercial", image: "/12.jpg" },
+  { id: 15, title: "Ongoing Project", category: "Industrial", image: "/13.jpg" },
+  { id: 16, title: "Ongoing Project", category: "Residential", image: "/14.jpg" },
+  { id: 17, title: "Ongoing Project", category: "Commercial", image: "/15.jpg" },
+  { id: 18, title: "Public Facility", category: "Public", image: "/16.jpg" },
 ];
 
 export default function ProjectsPage() {

@@ -39,11 +39,10 @@ export const ComparisonTable = () => {
 
                {/* Alexcathe Column */}
                <GlassCard className="p-8 border-orange-500/30 bg-background/80 shadow-[0_0_50px_-20px_rgba(249,115,22,0.15)] relative overflow-hidden">
-                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-500 via-yellow-500 to-orange-500" />
+                    {/* Removed Orange Line & Premium Badge as requested */}
                     
                     <h3 className="text-2xl font-bold text-foreground mb-8 border-b border-border pb-4 flex items-center gap-2">
                         Alexcathe Standard
-                        <span className="px-2 py-0.5 rounded-full bg-orange-500 text-white text-[10px] font-bold uppercase tracking-wider">Premium</span>
                     </h3>
                     
                     <div className="space-y-6">
