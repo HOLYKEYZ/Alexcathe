@@ -1,7 +1,7 @@
 "use client";
 
 import { GlassCard } from "./ui/GlassCard";
-import { HardHat, Ruler, Building, Zap, ArrowUpRight } from "lucide-react";
+import { HardHat, Ruler, Building, Zap, MapPin, Home, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
@@ -9,27 +9,39 @@ import { useState, useEffect } from "react";
 
 const services = [
   {
-    icon: HardHat,
-    title: "General Contracting",
-    description: "End-to-end execution of complex construction projects with unwavering safety standards.",
+    icon: MapPin,
+    title: "Geo-Informatic Services",
+    description: "Precision land surveying, GIS mapping, and spatial data analysis for informed decisions.",
     colSpan: "md:col-span-2",
   },
   {
     icon: Ruler,
-    title: "Architectural Design",
-    description: "Blueprint-perfect precision from concept to structural reality.",
+    title: "Architectural Designs",
+    description: "Innovative 2D/3D modeling, building plans, and aesthetic design solutions.",
+    colSpan: "md:col-span-1",
+  },
+  {
+    icon: Building,
+    title: "Structural Designs",
+    description: "Expert structural engineering for safe, durable, and resilient buildings.",
+    colSpan: "md:col-span-1",
+  },
+  {
+    icon: Home,
+    title: "Real Estate Dev.",
+    description: "Property acquisition, development, and comprehensive real estate management.",
+    colSpan: "md:col-span-1",
+  },
+  {
+    icon: HardHat,
+    title: "Building Constructions",
+    description: "Full-scale construction services from foundation to finishing with excellence.",
     colSpan: "md:col-span-1",
   },
   {
     icon: Zap,
-    title: "MEP Engineering",
-    description: "Mechanical, Electrical, and Plumbing systems integrated seamlessly.",
-    colSpan: "md:col-span-1", 
-  },
-  {
-    icon: Building,
-    title: "Real Estate Development",
-    description: "Transforming land potential into high-value commercial and residential assets.",
+    title: "Mechanical & Electrical",
+    description: "Complete M&E design, installations, and maintenance for all building systems.",
     colSpan: "md:col-span-2",
   }
 ];

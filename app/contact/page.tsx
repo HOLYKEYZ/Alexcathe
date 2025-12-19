@@ -129,11 +129,12 @@ export default function ContactPage() {
                                           <SelectValue placeholder="Select a service" />
                                       </SelectTrigger>
                                       <SelectContent className="bg-background border-border text-foreground">
-                                          <SelectItem value="Real Estate Development">Real Estate Development</SelectItem>
+                                          <SelectItem value="Geo-Informatic Services">Geo-Informatic Services</SelectItem>
                                           <SelectItem value="Architectural Designs">Architectural Designs</SelectItem>
                                           <SelectItem value="Structural Designs">Structural Designs</SelectItem>
-                                          <SelectItem value="MEP Services">MEP Services</SelectItem>
-                                          <SelectItem value="Installation Services">Installation Services</SelectItem>
+                                          <SelectItem value="Real Estate Dev.">Real Estate Dev.</SelectItem>
+                                          <SelectItem value="Building Constructions">Building Constructions</SelectItem>
+                                          <SelectItem value="Mechanical & Electrical">Mechanical & Electrical</SelectItem>
                                           <SelectItem value="General Inquiry">General Inquiry</SelectItem>
                                       </SelectContent>
                                    </Select>

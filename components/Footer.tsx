@@ -35,10 +35,10 @@ const Footer = () => {
         {
             title: "Services",
             links: [
-                { name: "Construction", href: "/services" },
-                { name: "Architectural Design", href: "/services" },
-                { name: "Consultancy", href: "/services" },
-                { name: "Real Estate", href: "/services" },
+                { name: "Geo-Informatic Services", href: "/services" },
+                { name: "Architectural Designs", href: "/services" },
+                { name: "Building Constructions", href: "/services" },
+                { name: "Real Estate Dev.", href: "/services" },
             ]
         },
     ];

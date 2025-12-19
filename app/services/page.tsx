@@ -1,17 +1,17 @@
 import { PageHeader } from "@/components/PageHeader";
 import { GlassCard } from "@/components/ui/GlassCard";
-import { HardHat, Ruler, Building, Zap, Truck, Wrench, ArrowUpRight } from "lucide-react";
+import { HardHat, Ruler, Building, Zap, MapPin, Home, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 export default function ServicesPage() {
   const services = [
-    { icon: HardHat, title: "General Contracting", desc: "Full-service construction management from ground-breaking to handover." },
-    { icon: Ruler, title: "Architectural Design", desc: "Innovative 2D/3D modeling and structural planning." },
-    { icon: Zap, title: "Electrical Engineering", desc: "Industrial and residential electrical installations and maintenance." },
-    { icon: Building, title: "Real Estate Development", desc: "Property acquisition, development, and sales management." },
-    { icon: Truck, title: "Material Supply", desc: "Procurement of high-grade construction materials." },
-    { icon: Wrench, title: "Facility Management", desc: "Post-construction maintenance and facility optimization." },
+    { icon: MapPin, title: "Geo-Informatic Services", desc: "Precision land surveying, GIS mapping, and spatial data analysis." },
+    { icon: Ruler, title: "Architectural Designs", desc: "Innovative 2D/3D modeling, building plans, and aesthetic design." },
+    { icon: Building, title: "Structural Designs", desc: "Expert structural engineering for safe and resilient buildings." },
+    { icon: Home, title: "Real Estate Dev.", desc: "Property acquisition, development, and real estate management." },
+    { icon: HardHat, title: "Building Constructions", desc: "Full-scale construction from foundation to finishing." },
+    { icon: Zap, title: "Mechanical & Electrical", desc: "Complete M&E design, installations, and maintenance." },
   ];
 
   return (
