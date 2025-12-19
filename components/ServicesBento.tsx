@@ -1,7 +1,7 @@
 "use client";
 
 import { GlassCard } from "./ui/GlassCard";
-import { HardHat, Ruler, Building, Zap, MapPin, Home, ArrowUpRight } from "lucide-react";
+import { HardHat, Ruler, Building, Zap, MapPin, Home, ArrowUpRight, Play } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
@@ -103,6 +103,28 @@ export const ServicesBento = () => {
                      </GlassCard>
                  );
              })}
+
+             {/* Tools/Equipment Card */}
+             <div className="md:col-span-1">
+                <GlassCard 
+                   className="group relative min-h-[300px] h-full overflow-hidden border-0 p-0 rounded-2xl"
+                >
+                   {/* Image Background */}
+                   <div 
+                      className="absolute inset-0 w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                      style={{ backgroundImage: "url('/construction-tools.png')" }}
+                   />
+                   
+                   {/* Overlay */}
+                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent group-hover:from-black/70 transition-all duration-300" />
+                   
+                   {/* Content */}
+                   <div className="relative z-10 h-full min-h-[300px] flex flex-col justify-end p-8">
+                      <span className="text-orange-400 font-mono text-xs tracking-widest uppercase mb-2">Precision Tools</span>
+                      <p className="text-white font-bold text-xl">Built Right,<br/>Every Time.</p>
+                   </div>
+                </GlassCard>
+             </div>
           </div>
        </div>
     </section>
